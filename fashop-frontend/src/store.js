@@ -1,8 +1,11 @@
-import { createStore } from 'redux'
-import { LoginReducer, initialState } from './reducers/LoginReducer'
+import { createStore, combineReducers } from "redux";
+import userReducer from "./reducers/userReducer";
+
+const rootReducer = combineReducers({
+  user: userReducer,
+});
 
 export default createStore(
-    LoginReducer,
-    initialState,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  );
+  rootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
