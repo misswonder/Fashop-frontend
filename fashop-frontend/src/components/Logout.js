@@ -1,7 +1,12 @@
-import React from "react";
+import { useEffect } from "react";
 
-const Logout = () => {
+function Logout({ history, logout }) {
+  useEffect(() => {
+    logout();
+    history.push("/login");
+  }, []);
 
+  return null;
 }
 
-export default Logout; 
+export default Logout;

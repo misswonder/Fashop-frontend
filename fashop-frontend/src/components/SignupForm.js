@@ -2,73 +2,100 @@ import React from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 
-function SignupForm() {
-  const Signup = () => {
-    const dispatch = useDispatch();
+const BASE_URL = "http://127.0.0.1:4000/api/v1";
 
-    return (
-      <Form>
-        <Form.Row>
-          <Form.Group as={Col} controlId="formGridName">
-            <Form.Label>Name</Form.Label>
-            <Form.Control
-              type="name"
-              placeholder="Enter a Name"
-              onChange={(e) =>
-                dispatch({
-                  type: "SET_NAME_INPUT",
-                  text: e.target.value,
-                })
-              }
-            />
-          </Form.Group>
+function SignupForm({ login }) {
+  const [name, setName] = useState("");
+  const [age, setAge] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-          <Form.Group as={Col} controlId="formGridAge">
-            <Form.Label>Age</Form.Label>
-            <Form.Control
-              placeholder="Enter a Age"
-              onChange={(event) => this.setState({ age: event.target.value })}
-            />
-          </Form.Group>
+  const dispatch = useDispatch();
 
-          <Form.Group as={Col} controlId="formGridUsername">
-            <Form.Label>Email</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="Enter an Email"
-              onChange={(e) =>
-                dispatch({
-                  type: "SET_EMAIL_INPUT",
-                  text: e.target.value,
-                })
-              }
-            />
-            <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
-            </Form.Text>
-          </Form.Group>
+  const signUp = (e) => {
+    e.preventDefault();
 
-          <Form.Group controlId="formGridEmail">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              placeholder="Enter a Password"
-              onChange={(e) =>
-                dispatch({
-                  type: "SET_PASSWORD_INPUT",
-                  password: e.target.value,
-                })
-              }
-            />
-          </Form.Group>
-        </Form.Row>
+    let reqObj = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user: {
+          name: name,
+          age: age,
+          email: email,
+          password: password,
+        },
+      }),
+    };
 
-        <Button variant="primary" type="submit">
-          Create Account
-        </Button>
-      </Form>
-    );
+    fetch(`${BASE_URL}/signup`, reqObj)
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+
+        return Promise.reject(res.status);
+      })
+      .then((data) => {
+        login(data);
+      });
+
+    e.target.reset();
+    setName("");
+    setAge("");
+    setEmail("");
+    setPassword("");
   };
+
+  return (
+    <Form onSubmit={signUp}>
+      <Form.Row>
+        <Form.Group as={Col} controlId="formGridName">
+          <Form.Label>Name</Form.Label>
+          <Form.Control
+            type="name"
+            placeholder="Name"
+            onChange={(e) => setName(e.target.value)}
+          />
+        </Form.Group>
+
+        <Form.Group as={Col} controlId="formGridAge">
+          <Form.Label>Age</Form.Label>
+          <Form.Control
+            placeholder="Age"
+            onChange={(e) => setAge(e.target.value)}
+          />
+        </Form.Group>
+
+        <Form.Group as={Col} controlId="formGridUsername">
+          <Form.Label>Email</Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="Email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <Form.Text className="text-muted">
+            We'll never share your email with anyone else.
+          </Form.Text>
+        </Form.Group>
+
+        <Form.Group controlId="formGridEmail">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </Form.Group>
+      </Form.Row>
+
+      <Button variant="primary" type="submit">
+        Create Account
+      </Button>
+    </Form>
+  );
 }
+
 export default SignupForm;

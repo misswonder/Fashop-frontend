@@ -1,9 +1,9 @@
-.App {
+.app {
   text-align: center;
-  color:#f8edeb;
+  color: black;
 }
 
-.App-header {
+/* .App-header {
   background-color: #f1faee;
   min-height: 100vh;
   display: flex;
@@ -12,6 +12,25 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+} */
+
+
+.card-image img {
+  width: 600px;
+  height: 600px;
+  object-fit: contain;
+  border-radius: 5px;
+  padding: 5px;
 }
 
+.card-image img:hover {
+  box-shadow:10px 10px 7px rgba(0,0,0,.7);
+  transform: scale(1.25) !important;
+  position:relative;
+  z-index:5;
+}
 
+.center {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1.80rem;
+}

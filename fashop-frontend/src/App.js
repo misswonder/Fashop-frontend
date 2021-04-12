@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import { Image } from "semantic-ui-react";
 import LoginForm from "./components/LoginForm";
+import SignupForm from "./components/SignupForm";
 import logo from "./image/logo.png";
 import TopNav from "./components/TopNav";
 import Home from "./components/Home";
@@ -14,46 +15,97 @@ import About from "./components/About";
 import Profile from "./components/Profile";
 import Filters from "./components/Filters";
 import OrderHistory from "./components/OrderHistory";
+import MyCart from "./components/MyCart";
 import Logout from "./components/Logout";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "semantic-ui-css/semantic.min.css";
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
+import React, { useCallback, useEffect } from "react";
 
+const App = () => {
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const login = useCallback(
+    (payload) => {
+      dispatch({ type: "LOGIN", payload });
+    },
+    [dispatch]
+  );
+  const logout = useCallback(() => {
+    localStorage.removeItem("user");
+    dispatch({ type: "LOGOUT" });
+  }, [dispatch]);
 
-const App = (isLogin) => {
+  useEffect(() => {
+    const userFromStorage = localStorage.getItem("user");
+    if (userFromStorage) {
+      login(JSON.parse(userFromStorage));
+    }
+  }, []);
 
   return (
     <Router>
-      <div className="App">
-        <Image src={logo} size="small" centered />
+      <div className="app">
+        <Image src={logo} size="medium" centered />
         <TopNav />
         <Switch>
-          <Route exact path="/" render={() => <LoginForm />} />
           <Route exact path="/home" component={Home} />
           <Route exact path="/about" component={About} />
-          {/* <Route
+          <Route
             exact
             path="/filters"
-            render={() => {return isLogin ? <Filters/> : <Redirect to= '/' />}}
+            render={() => {
+              return user ? <Filters /> : <Redirect to="/login" />;
+            }}
           />
           <Route
             exact
-            path="/OrderHistory"
-            render={() => {return isLogin ? <OrderHistory /> : <Redirect to= '/' />}}
-          /> */}
+            path="/orderhistory"
+            render={() => {
+              return user ? <OrderHistory /> : <Redirect to="/login" />;
+            }}
+          />
+          <Route
+            exact
+            path="/mycart"
+            render={() => {
+              return user ? <MyCart /> : <Redirect to="/login" />;
+            }}
+          />
+          <Route
+            exact
+            path="/login"
+            render={(routeProps) => <LoginForm {...routeProps} />}
+          />
           <Route
             exact
             path="/logout"
-            render={() => (
-              <Logout />
-            )}
+            render={(routeProps) => <Logout {...routeProps} logout={logout} />}
+          />
+          <Route
+            path="/"
+            render={() => <Redirect to={user ? "/home" : "/login"} />}
           />
         </Switch>
       </div>
     </Router>
   );
-}
+};
 
-const mapStateToProps = () => ({})
+// const mapStateToProps = (state) => {
+//   return {
+//     isLogin: state.user.isLogin,
+//     isSignup: state.user.isSignup
+//   };
+// };
 
-export default connect(mapStateToProps)(App);
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     user: () => dispatch({ type: "LOGIN", isLogin: true }),
+//     user: () => dispatch({ type: "SIGNUP", isSignup: true })
+//   };
+// };
+
+// export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+export default App;

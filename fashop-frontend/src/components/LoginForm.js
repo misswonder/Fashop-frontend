@@ -1,18 +1,31 @@
 import React from "react";
 import { Button, Form, Segment, Divider, Grid } from "semantic-ui-react";
 import { useDispatch } from "react-redux";
-import { useState } from "react";
+import { useState, useCallback } from "react";
+import SignupForm from "./SignupForm";
 
 const BASE_URL = "http://127.0.0.1:4000/api/v1";
 
-function LoginForm() {
+function LoginForm({ history }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
   const dispatch = useDispatch();
 
-  const Login = (e) => {
+  const dispatchLogin = useCallback(
+    (data) => {
+      localStorage.setItem("user", JSON.stringify(data));
+      dispatch({
+        type: "LOGIN",
+        payload: data,
+      });
+      history.push("/home");
+    },
+    [dispatch]
+  );
+
+  const logIn = (e) => {
     e.preventDefault();
 
     let reqObj = {
@@ -35,28 +48,24 @@ function LoginForm() {
         return Promise.reject(res.status);
       })
       .then((data) => {
-        localStorage.setItem("token", data.jwt);
-        dispatch({
-          type: "LOGIN",
-          payload: data,
-        });
+        dispatchLogin(data);
       })
       .catch(() => {
         setError("Invalid email or password");
       });
 
-    // e.target.reset();
-    // setEmail("");
-    // setPassword("");
-
+    e.target.reset();
+    setEmail("");
+    setPassword("");
   };
 
   return (
-    <div class="ui compact segment">
-      <Segment placeholder size="medium">
+    <div>
+
+      <Segment placeholder>
         <Grid columns={2} relaxed="very" stackable>
           <Grid.Column>
-            <Form className="login" onSubmit={Login}>
+            <Form className="login" onSubmit={logIn}>
               <Form.Input
                 icon="user"
                 iconPosition="left"
@@ -68,7 +77,7 @@ function LoginForm() {
                 icon="lock"
                 iconPosition="left"
                 label="Password"
-                type="password"
+                placeholder="Password"
                 onChange={(e) => setPassword(e.target.value)}
               />
               {error}
@@ -77,7 +86,7 @@ function LoginForm() {
           </Grid.Column>
 
           <Grid.Column verticalAlign="middle">
-            <Button content="Sign up" icon="signup" size="big" />
+            <SignupForm login={dispatchLogin} />
           </Grid.Column>
         </Grid>
 
