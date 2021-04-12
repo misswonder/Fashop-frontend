@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import { Image } from "semantic-ui-react";
 import LoginForm from "./components/LoginForm";
-import SignupForm from "./components/SignupForm";
+// import SignupForm from "./components/SignupForm";
 import logo from "./image/logo.png";
 import TopNav from "./components/TopNav";
 import Home from "./components/Home";
