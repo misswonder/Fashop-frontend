@@ -19,7 +19,7 @@ const TopNav = ({ view }) => {
             <Nav.Link href="/orderhistory">Order History</Nav.Link>
           </div>
           <div>
-            <Nav.Link href="/mycart">My Cart</Nav.Link>
+            <Nav.Link href="/mycart">My Cart <i class="shopping cart icon"></i></Nav.Link>
             {user && <Nav.Link href="/logout">Logout</Nav.Link>}
           </div>
         </Nav>

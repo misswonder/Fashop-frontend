@@ -92,7 +92,7 @@ function SignupForm({ login }) {
       </Form.Row>
 
       <Button variant="primary" type="submit">
-        Create Account
+        Signup
       </Button>
     </Form>
   );
