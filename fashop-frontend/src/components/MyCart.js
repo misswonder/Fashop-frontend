@@ -6,8 +6,9 @@ import {
   subtractQuantity,
 } from "../actions/cartAction";
 import { connect } from "react-redux";
-import Recipe from "./Recipe";
-import { Button, Container, Grid, List } from "semantic-ui-react";
+import Receipt from "./Receipt";
+import { Button, Container, Icon, Grid, List } from "semantic-ui-react";
+import 'semantic-ui-css/semantic.min.css'
 
 class MyCart extends Component {
   //to remove the item completely
@@ -29,6 +30,7 @@ class MyCart extends Component {
         return (
           <Container>
             <List className="collection-item avatar" key={product.id}>
+            <Container>
               <div className="product-img">
                 <img
                   src={product.image}
@@ -38,8 +40,11 @@ class MyCart extends Component {
               </div>
 
               <div className="product-desc">
-                <span className="title">{product.title}</span>
-                <p>{product.desc}</p>
+                <span className="title">{product.name}</span>
+                <br></br>
+                <br></br>
+                {/* <p>{product.description}</p> */}
+                {/* <p>{product.description}</p> */}
                 <p>
                   <b>Price: ${product.price}</b>
                 </p>
@@ -48,24 +53,20 @@ class MyCart extends Component {
                 </p>
                 <div className="add-remove">
                   <Link to="/mycart">
-                    <i
-                      className="caret square up"
+                    <Icon
+                      name="caret square up" size="big" color='grey'
                       onClick={() => {
                         this.handleAddQuantity(product.id);
                       }}
-                    >
-                      arrow_drop_up
-                    </i>
+                    />
                   </Link>
                   <Link to="/mycart">
-                    <i
-                      className="caret square down"
+                    <Icon
+                      name="caret square down" size="big" color='grey'
                       onClick={() => {
                         this.handleSubtractQuantity(product.id);
                       }}
-                    >
-                      arrow_drop_down
-                    </i>
+                    />
                   </Link>
                 </div>
                 <br></br>
@@ -77,7 +78,10 @@ class MyCart extends Component {
                 >
                   Remove
                 </Button>
+                <br></br>
+                <br></br>
               </div>
+              </Container>
             </List>
           </Container>
         );
@@ -98,7 +102,7 @@ class MyCart extends Component {
             <ul className="collection">{addedProducts}</ul>
           </Grid.Row>
         </Grid>
-        <Recipe />
+        <Receipt />
       </Container>
     );
   }
@@ -106,7 +110,7 @@ class MyCart extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    products: state.carts.addedProducts,
+    products: state.cart.addedProducts,
   };
 };
 const mapDispatchToProps = (dispatch) => {

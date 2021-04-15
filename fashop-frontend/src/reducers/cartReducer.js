@@ -4,11 +4,11 @@ import {
   subtractQuantity,
   addQuantity,
 } from "../actions/cartAction";
+import produce from "immer";
 
 const cartReducer = (
-   
   state = {
-    addedProducts: JSON.parse(localStorage.getItem("cart")),
+    addedProducts: [],
     total: 0,
   },
   action
@@ -28,14 +28,7 @@ const cartReducer = (
     } else {
       //calculating the total
       let newTotal = state.total + action.product.price;
-      const updatedState = [
-        ...state.addedProducts,
-        {
-          ...action.product,
-          quantity: 1,
-        },
-      ]
-      localStorage.setItem("cart", JSON.stringify(updatedState))
+
       return {
         ...state,
         addedProducts: [
@@ -48,7 +41,7 @@ const cartReducer = (
         total: newTotal,
       };
     }
-  } 
+  }
 
   if (action.type === "REMOVE_ITEM") {
     let productToRemove = state.addedProducts.find(
@@ -61,7 +54,7 @@ const cartReducer = (
     //calculating the total
     let newTotal =
       state.total - productToRemove.price * productToRemove.quantity;
-    // console.log(productToRemove);
+
     return {
       ...state,
       addedProducts: new_products,
@@ -70,39 +63,29 @@ const cartReducer = (
   }
   //INSIDE MyCart COMPONENT
   if (action.type === "ADD_QUANTITY") {
-    let addedProduct = state.products.find(
-      (product) => product.id === product.id
-    );
-    addedProduct.quantity += 1;
-    let newTotal = state.total + addedProduct.price;
-    return {
-      ...state,
-      total: newTotal,
-    };
+    return produce(state, (draft) => {
+      let addedProduct = draft.addedProducts.find(
+        (product) => product.id === action.id
+      );
+      addedProduct.quantity += 1;
+      draft.total += addedProduct.price;
+    });
   }
   if (action.type === "SUB_QUANTITY") {
-    let addedProduct = state.products.find(
-      (product) => product.id === product.id
-    );
-    //if the qt == 0 then it should be removed
-    if (addedProduct.quantity === 1) {
-      let new_products = state.addedProducts.filter(
-        (product) => product.id !== action.id
+    return produce(state, (draft) => {
+      const productIndex = draft.addedProducts.findIndex(
+        (product) => product.id === action.id
       );
-      let newTotal = state.total - addedProduct.price;
-      return {
-        ...state,
-        addedProducts: new_products,
-        total: newTotal,
-      };
-    } else {
-      addedProduct.quantity -= 1;
-      let newTotal = state.total - addedProduct.price;
-      return {
-        ...state,
-        total: newTotal,
-      };
-    }
+      const addedProduct = draft.addedProducts[productIndex];
+
+      if (addedProduct.quantity === 1) {
+        draft.addedProducts.splice(productIndex, 1);
+      } else {
+        addedProduct.quantity -= 1;
+      }
+
+      draft.total += addedProduct.price;
+    });
   }
 
   if (action.type === "ADD_SHIPPING") {

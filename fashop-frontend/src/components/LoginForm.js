@@ -15,7 +15,6 @@ function LoginForm({ history }) {
 
   const dispatchLogin = useCallback(
     (data) => {
-      localStorage.setItem("user", JSON.stringify(data));
       dispatch({
         type: "LOGIN",
         payload: data,

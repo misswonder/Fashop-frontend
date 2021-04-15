@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 import { Image } from "semantic-ui-react";
 import LoginForm from "./components/LoginForm";
-// import SignupForm from "./components/SignupForm";
 import logo from "./image/logo.png";
 import TopNav from "./components/TopNav";
 import Home from "./components/Home";
@@ -19,34 +18,15 @@ import OrderHistory from "./components/OrderHistory";
 import MyCart from "./components/MyCart";
 import Logout from "./components/Logout";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import "semantic-ui-css/semantic.min.css";
 import { useDispatch, useSelector } from "react-redux";
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback} from "react";
 
 const App = () => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const login = useCallback(
-    (payload) => {
-      dispatch({ type: "LOGIN", payload });
-    },
-    [dispatch]
-  );
   const logout = useCallback(() => {
-    localStorage.removeItem("user");
     dispatch({ type: "LOGOUT" });
   }, [dispatch]);
-
-  useEffect(() => {
-    const userFromStorage = localStorage.getItem("user");
-    if (userFromStorage) {
-      login(JSON.parse(userFromStorage));
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify([]));
-  }, []);
 
   return (
     <Router>
@@ -60,37 +40,36 @@ const App = () => {
             exact
             path="/profile"
             render={() => {
-              return localStorage.getItem("user") ? <Profile /> : <Redirect to="/login" />;
+              return user ? <Profile /> : <Redirect to="/login" />;
             }}
           />
           <Route
             exact
             path="/filters"
             render={() => {
-              return localStorage.getItem("user") ? <Filters /> : <Redirect to="/login" />;
+              return user ? <Filters /> : <Redirect to="/login" />;
             }}
           />
           <Route
             exact
             path="/orderhistory"
             render={() => {
-              return localStorage.getItem("user") ? <OrderHistory /> : <Redirect to="/login" />;
+              return user ? <OrderHistory /> : <Redirect to="/login" />;
             }}
           />
           {/* <Route
             exact
             path="/search"
             render={() => {
-              return localStorage.getItem("user") ? <Search /> : <Redirect to="/login" />;
+              return user ? <Search /> : <Redirect to="/login" />;
             }}
           /> */}
           <Route
             exact
             path="/mycart"
             render={() => {
-              return localStorage.getItem("user") ? <MyCart /> : <Redirect to="/login" />;
+              return user ? <MyCart /> : <Redirect to="/login" />;
             }}
-            // component={ MyCart } 
           />
           <Route
             exact
@@ -111,21 +90,5 @@ const App = () => {
     </Router>
   );
 };
-
-// const mapStateToProps = (state) => {
-//   return {
-//     isLogin: state.user.isLogin,
-//     isSignup: state.user.isSignup
-//   };
-// };
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     user: () => dispatch({ type: "LOGIN", isLogin: true }),
-//     user: () => dispatch({ type: "SIGNUP", isSignup: true })
-//   };
-// };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 export default App;

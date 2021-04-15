@@ -2,13 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button, Checkbox, Container, Grid } from "semantic-ui-react";
 
-class Recipe extends Component {
-  componentWillUnmount() {
-    if (this.refs.shipping.checked) this.props.substractShipping();
-  }
-
-  handleChecked = (e) => {
-    if (e.target.checked) {
+class Receipt extends Component {
+  handleChecked = (_, { checked }) => {
+    if (checked) {
       this.props.addShipping();
     } else {
       this.props.substractShipping();
@@ -23,9 +19,18 @@ class Recipe extends Component {
             <Grid.Column width={15}>
               <Checkbox label="Shipping(+$6)" onChange={this.handleChecked} />
             </Grid.Column>
-            <Grid.Column width={15}><strong>Total: ${this.props.total}</strong></Grid.Column>
             <Grid.Column width={15}>
-              <Button color="black">Checkout</Button>
+              <strong>Total: ${this.props.total.toFixed(2)}</strong>
+            </Grid.Column>
+            <Grid.Column width={15}>
+              <Button
+                color="black"
+                onClick={() => {
+                  alert ("Thank you for your order!");
+                }}
+              >
+                Checkout
+              </Button>
             </Grid.Column>
           </Grid.Row>
         </Grid>
@@ -36,8 +41,8 @@ class Recipe extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    addedProducts: state.addedProducts,
-    total: state.total,
+    addedProducts: state.cart.addedProducts,
+    total: state.cart.total,
   };
 };
 
@@ -52,4 +57,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Recipe);
+export default connect(mapStateToProps, mapDispatchToProps)(Receipt);

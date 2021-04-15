@@ -1,6 +1,7 @@
 import React from "react";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import { Link } from 'react-router-dom';
 import { Search } from "semantic-ui-react";
 
 const TopNav = ({ view }) => {
@@ -10,21 +11,21 @@ const TopNav = ({ view }) => {
       <Navbar bg="dark" variant="dark">
         <Nav className="mr-auto">
           <div>
-            <Nav.Link href="/home">Home</Nav.Link>
-            <Nav.Link href="/about">About</Nav.Link>
-            <Nav.Link href="/profile">Profile</Nav.Link>
+            <Nav.Link as={Link} to="/home">Home</Nav.Link>
+            <Nav.Link as={Link} to="/about">About</Nav.Link>
+            <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
             <NavDropdown title="Filters" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/filters">Prices</NavDropdown.Item>
-              <NavDropdown.Item href="/filters">Sizes</NavDropdown.Item>
-              <NavDropdown.Item href="/filters">Colors</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/filters">Prices</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/filters">Sizes</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/filters">Colors</NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link href="/orderhistory">Order History</Nav.Link>
+            <Nav.Link as={Link} to="/orderhistory">Order History</Nav.Link>
             
           </div>
           <div>
           <Search showNoResults={false}/>
-            <Nav.Link href="/mycart">My Cart <i class="shopping cart icon"></i></Nav.Link>
-            {user && <Nav.Link href="/logout">Logout</Nav.Link>}
+            <Nav.Link as={Link} to="/mycart">My Cart <i class="shopping cart icon"></i></Nav.Link>
+            {user && <Nav.Link as={Link} to="/logout">Logout</Nav.Link>}
           </div>
         </Nav>
       </Navbar>
