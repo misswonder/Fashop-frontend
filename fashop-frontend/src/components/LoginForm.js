@@ -61,6 +61,7 @@ function LoginForm({ history }) {
 
   return (
     <div>
+      
 
       <Segment placeholder>
         <Grid columns={2} relaxed="very" stackable>
@@ -70,12 +71,14 @@ function LoginForm({ history }) {
                 icon="user"
                 iconPosition="left"
                 label="Email"
+                type="email"
                 placeholder="Email"
                 onChange={(e) => setEmail(e.target.value)}
               />
               <Form.Input
                 icon="lock"
                 iconPosition="left"
+                type="password"
                 label="Password"
                 placeholder="Password"
                 onChange={(e) => setPassword(e.target.value)}

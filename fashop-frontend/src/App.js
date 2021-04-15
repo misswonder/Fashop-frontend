@@ -15,6 +15,7 @@ import About from "./components/About";
 import Profile from "./components/Profile";
 import Filters from "./components/Filters";
 import OrderHistory from "./components/OrderHistory";
+// import Search from "./components/Search";
 import MyCart from "./components/MyCart";
 import Logout from "./components/Logout";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -41,6 +42,10 @@ const App = () => {
     if (userFromStorage) {
       login(JSON.parse(userFromStorage));
     }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify([]));
   }, []);
 
   return (
@@ -72,12 +77,20 @@ const App = () => {
               return localStorage.getItem("user") ? <OrderHistory /> : <Redirect to="/login" />;
             }}
           />
+          {/* <Route
+            exact
+            path="/search"
+            render={() => {
+              return localStorage.getItem("user") ? <Search /> : <Redirect to="/login" />;
+            }}
+          /> */}
           <Route
             exact
             path="/mycart"
             render={() => {
               return localStorage.getItem("user") ? <MyCart /> : <Redirect to="/login" />;
             }}
+            // component={ MyCart } 
           />
           <Route
             exact

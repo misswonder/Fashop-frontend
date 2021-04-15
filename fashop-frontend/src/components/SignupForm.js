@@ -65,6 +65,7 @@ function SignupForm({ login }) {
         <Form.Group as={Col} controlId="formGridAge">
           <Form.Label>Age</Form.Label>
           <Form.Control
+            type="age"
             placeholder="Age"
             onChange={(e) => setAge(e.target.value)}
           />
@@ -85,6 +86,7 @@ function SignupForm({ login }) {
         <Form.Group controlId="formGridEmail">
           <Form.Label>Password</Form.Label>
           <Form.Control
+            type="password"
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
           />

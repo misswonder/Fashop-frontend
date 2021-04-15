@@ -6,8 +6,9 @@ import {
 } from "../actions/cartAction";
 
 const cartReducer = (
+   
   state = {
-    addedProducts: [],
+    addedProducts: JSON.parse(localStorage.getItem("cart")),
     total: 0,
   },
   action
@@ -27,7 +28,14 @@ const cartReducer = (
     } else {
       //calculating the total
       let newTotal = state.total + action.product.price;
-
+      const updatedState = [
+        ...state.addedProducts,
+        {
+          ...action.product,
+          quantity: 1,
+        },
+      ]
+      localStorage.setItem("cart", JSON.stringify(updatedState))
       return {
         ...state,
         addedProducts: [
@@ -40,7 +48,8 @@ const cartReducer = (
         total: newTotal,
       };
     }
-  }
+  } 
+
   if (action.type === "REMOVE_ITEM") {
     let productToRemove = state.addedProducts.find(
       (product) => action.id === product.id
@@ -111,8 +120,6 @@ const cartReducer = (
   } else {
     return state;
   }
-
-  return state;
 };
 
 export default cartReducer;

@@ -14,6 +14,18 @@
   color: white;
 } */
 
+.item-img img {
+  max-width: 10px;
+  max-height: 10px;
+  object-fit: contain;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.none {
+  margin-left: 450px;
+}
+
 
 .card-image img {
   width: 600px;
@@ -41,6 +53,12 @@
   color: black;
 }
 
+.order {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1.50rem;
+  color: black;
+}
+
 .navbar-nav {
   justify-content: space-between;
   width: 100%;
@@ -63,7 +81,13 @@ html {
   box-sizing: inherit;
 }
 
-.column {
+.rowone {
+  display: flex;
+  justify-content: center;
+  /* flex-direction: row; */
+}
+
+.columnone {
   float: left;
   width: 33.3%;
   margin-bottom: 16px;
@@ -96,7 +120,7 @@ html {
   color: grey;
 }
 
-.button {
+.contactbutton {
   border: none;
   outline: 0;
   display: inline-block;
@@ -119,7 +143,4 @@ html {
   }
 }
 
-.row {
-  justify-content: center;
-}
 

@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addToCart } from "../actions/cartAction";
+import { Button } from "semantic-ui-react";
 
-function Product({ addToCart, product }) {
+const Product = ({ addToCart, product }) => {
+
   return (
     <div className="card" key={product.id}>
       <div className="card-image">
@@ -27,16 +29,16 @@ function Product({ addToCart, product }) {
           to="/"
           className="btn-floating halfway-fab waves-effect waves-light red"
           onClick={() => {
-            addToCart();
+            addToCart(product);
           }}
         >
-          <button class="ui black button">Add to Cart</button>
+          <Button color="black">Add to Cart</Button>
         </div>
       </div>
       <br></br>
     </div>
   );
-}
+};
 
 const mapStateToProps = (state) => {
   return {
@@ -45,8 +47,8 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    addToCart: (id) => {
-      dispatch(addToCart(id));
+    addToCart: (product) => {
+      dispatch(addToCart(product));
     },
   };
 };

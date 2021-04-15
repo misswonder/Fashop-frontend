@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import Product from "../components/Product";
 import { get_products } from "../actions/productAction";
-import { addToCart } from "../actions/cartAction";
+import MyCart from "../components/MyCart";
 
 // Endpoint!
 const API = "http://localhost:4000/products";
@@ -14,7 +14,6 @@ class MainContainer extends React.Component {
       .then((products) => this.props.get_products(products));
   }
 
-
   render() {
     return (
       <div className="container">
@@ -23,13 +22,7 @@ class MainContainer extends React.Component {
         <br></br>
         <div className="box">
           {this.props.products?.map((product) => {
-            return (
-              <Product
-                key={product.id}
-                product={product}
-                addToCart={() => this.props.addToCart(product)}
-              />
-            );
+            return <Product key={product.id} product={product} />;
           })}
         </div>
       </div>
@@ -48,10 +41,7 @@ const mapDispatchToProps = (dispatch) => {
     get_products: (products) => {
       dispatch(get_products(products));
     },
-    addToCart: (product) => {
-      dispatch(addToCart(product));
-    }
   };
-}; 
- 
+};
+
 export default connect(mapStateToProps, mapDispatchToProps)(MainContainer);
