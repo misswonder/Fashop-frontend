@@ -1,8 +1,7 @@
 import React from "react";
-import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
-import { Search } from "semantic-ui-react";
 
 const TopNav = ({ view }) => {
   const user = useSelector((state) => state.user);
@@ -14,16 +13,9 @@ const TopNav = ({ view }) => {
             <Nav.Link as={Link} to="/home">Home</Nav.Link>
             <Nav.Link as={Link} to="/about">About</Nav.Link>
             <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
-            <NavDropdown title="Filters" id="basic-nav-dropdown">
-              <NavDropdown.Item as={Link} to="/filters">Prices</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/filters">Sizes</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/filters">Colors</NavDropdown.Item>
-            </NavDropdown>
-            <Nav.Link as={Link} to="/orderhistory">Order History</Nav.Link>
-            
+            <Nav.Link as={Link} to="/orderhistory">Order History</Nav.Link>  
           </div>
           <div>
-          <Search showNoResults={false}/>
             <Nav.Link as={Link} to="/mycart">My Cart <i class="shopping cart icon"></i></Nav.Link>
             {user && <Nav.Link as={Link} to="/logout">Logout</Nav.Link>}
           </div>

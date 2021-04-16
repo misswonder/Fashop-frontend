@@ -94,7 +94,7 @@ class MyCart extends Component {
 
     return (
       <Container>
-        <Grid celled id="recipe">
+        <Grid celled id="receipt">
           <Grid.Row>
             <Grid.Column width={15}>
               <h5 class="order">You have ordered:</h5>

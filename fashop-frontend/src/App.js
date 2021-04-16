@@ -12,7 +12,6 @@ import TopNav from "./components/TopNav";
 import Home from "./components/Home";
 import About from "./components/About";
 import Profile from "./components/Profile";
-import Filters from "./components/Filters";
 import OrderHistory from "./components/OrderHistory";
 // import Search from "./components/Search";
 import MyCart from "./components/MyCart";
@@ -41,13 +40,6 @@ const App = () => {
             path="/profile"
             render={() => {
               return user ? <Profile /> : <Redirect to="/login" />;
-            }}
-          />
-          <Route
-            exact
-            path="/filters"
-            render={() => {
-              return user ? <Filters /> : <Redirect to="/login" />;
             }}
           />
           <Route

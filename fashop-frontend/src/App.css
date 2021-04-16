@@ -145,4 +145,17 @@ html {
   }
 }
 
+.form-container {
+  height: 200px;
+  width: 400px;
+  margin-top: 15px;
+  margin-left: -55px;
+}
+
+
+.search {
+  float: right;
+  margin-top: -180px;
+  margin-right: 40px;
+}
 

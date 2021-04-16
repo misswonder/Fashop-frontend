@@ -1,9 +1,3 @@
-import {
-  addToCart,
-  removeItem,
-  subtractQuantity,
-  addQuantity,
-} from "../actions/cartAction";
 import produce from "immer";
 
 const cartReducer = (
@@ -68,7 +62,9 @@ const cartReducer = (
         (product) => product.id === action.id
       );
       addedProduct.quantity += 1;
-      draft.total += addedProduct.price;
+      draft.total = draft.addedProducts.reduce((acc, product) => {
+        return acc + product.price * product.quantity;
+      }, 0);
     });
   }
   if (action.type === "SUB_QUANTITY") {
@@ -84,7 +80,9 @@ const cartReducer = (
         addedProduct.quantity -= 1;
       }
 
-      draft.total += addedProduct.price;
+      draft.total = draft.addedProducts.reduce((acc, product) => {
+        return acc + product.price * product.quantity;
+      }, 0);
     });
   }
 
