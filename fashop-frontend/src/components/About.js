@@ -10,6 +10,7 @@ const About = () => {
         <p>Be unique, be brave, be YOU.</p>
       </div>
 
+      <br></br>
       <h2 class="subheader" style={{ textAlign: 'center' }}>Our Team</h2>
       <div class="rowone">
         <div class="columnone">

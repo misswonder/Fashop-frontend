@@ -1,12 +1,10 @@
 import produce from "immer";
 
-const cartReducer = (
-  state = {
-    addedProducts: [],
-    total: 0,
-  },
-  action
-) => {
+const initialState = {
+  addedProducts: [],
+  total: 0,
+};
+const cartReducer = (state = initialState, action) => {
   //INSIDE MainContainer COMPONENT
   if (action.type === "ADD_TO_CART") {
     //check if the action id exists in the addedItems
@@ -98,9 +96,13 @@ const cartReducer = (
       ...state,
       total: state.total - 6,
     };
-  } else {
-    return state;
   }
+
+  if (action.type === "CLEAR_CART") {
+    return initialState;
+  }
+
+  return state;
 };
 
 export default cartReducer;

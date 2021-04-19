@@ -13,12 +13,13 @@ import Home from "./components/Home";
 import About from "./components/About";
 import Profile from "./components/Profile";
 import OrderHistory from "./components/OrderHistory";
-// import Search from "./components/Search";
+import Search from "./components/Search";
 import MyCart from "./components/MyCart";
 import Logout from "./components/Logout";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useCallback} from "react";
+import SearchBar from "./components/SearchBar";
 
 const App = () => {
   const user = useSelector((state) => state.user);
@@ -30,7 +31,10 @@ const App = () => {
   return (
     <Router>
       <div className="app">
-        <Image src={logo} size="medium" centered />
+        <Image src={logo} size="small"  />
+        <div>
+        <SearchBar />
+        </div>
         <TopNav />
         <Switch>
           <Route exact path="/home" component={Home} />
@@ -49,13 +53,13 @@ const App = () => {
               return user ? <OrderHistory /> : <Redirect to="/login" />;
             }}
           />
-          {/* <Route
+          <Route
             exact
             path="/search"
             render={() => {
-              return user ? <Search /> : <Redirect to="/login" />;
+              return <Search />;
             }}
-          /> */}
+          />
           <Route
             exact
             path="/mycart"

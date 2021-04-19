@@ -155,7 +155,15 @@ html {
 
 .search {
   float: right;
-  margin-top: -180px;
-  margin-right: 40px;
+  margin-top: -75px;
+  margin-right: 25px;
+}
+
+
+.sort-filter {
+  float: left; 
+  margin-top: 20px;
+  margin-left: 25px;
+  padding: 0px;
 }
 

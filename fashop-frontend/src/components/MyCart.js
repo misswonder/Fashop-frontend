@@ -43,8 +43,6 @@ class MyCart extends Component {
                 <span className="title">{product.name}</span>
                 <br></br>
                 <br></br>
-                {/* <p>{product.description}</p> */}
-                {/* <p>{product.description}</p> */}
                 <p>
                   <b>Price: ${product.price}</b>
                 </p>
