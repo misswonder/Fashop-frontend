@@ -24,6 +24,19 @@ img.item-img   {
   width: 100%;
 }
 
+.order-item {
+  display: flex;
+}
+
+img.order-item-img {
+  max-width: 650px;
+  max-height: 350px;
+  object-fit: contain;
+  border-radius: 5px;
+  padding: 5px;
+  width: 100%;
+}
+
 .none {
   margin-left: 450px;
 }

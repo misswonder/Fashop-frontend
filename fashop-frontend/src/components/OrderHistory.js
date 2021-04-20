@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Container, Grid, List } from "semantic-ui-react";
+import { Container, Grid, List, Header } from "semantic-ui-react";
+import { format } from "date-fns";
 
 const OrderHistory = () => {
   const [orders, setOrders] = useState([]);
@@ -15,22 +16,88 @@ const OrderHistory = () => {
       .then((res) => (res.ok ? res.json() : Promise.reject(res.status)))
       .then((res) => {
         setOrders(res);
+        console.log(setOrders);
       });
   }, []);
 
   return (
     <Container>
-      <Grid celled id="receipt">
+      <br></br>
+      <br></br>
+      <Grid>
         <Grid.Row>
-          <Grid.Column width={15}>
-            <h5 class="order-order">Your Order History:</h5>
+          <Grid.Column width={16}>
+            <Header as="h2" textAlign="center">
+              Your Order History:
+            </Header>
           </Grid.Column>
-          <ul className="collection"></ul>
-          <List>
-            
-          </List>
         </Grid.Row>
       </Grid>
+      <br></br>
+      <br></br>
+      <Container>
+        <ul className="collection">
+          {orders.map((order) => {
+            let ordered_at = order.ordered_at;
+            let order_items = order.order_items;
+            if (order.length === 0) {
+              return (
+                <h4>
+                  <strong>You have no Order History</strong>
+                </h4>
+              );
+            }
+            return (
+              <List key={order.id}>
+                {order_items.map((item) => {
+                  return (
+                    <div className="order-item">
+                      <img
+                        src={item.product.image}
+                        alt={item.product.image}
+                        className="order-item-img"
+                      />
+                      <div>
+                        <span>
+                          <h4>Product: {item.product.name}</h4>
+                        </span>
+                        <div>
+                          <br></br>
+                          <p>
+                            <b>Price: {item.price}</b>
+                          </p>
+
+                          <p>
+                            <b>Quantity: {item.quantity}</b>
+                          </p>
+                          <p>
+                            <b>Subtotal: {item.subtotal}</b>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+                <br></br>
+                <p>
+                  <b> Total: {order.total.toFixed(2)} </b>
+                </p>
+                <p>
+                  <b>
+                    {" "}
+                    Ordered_at: {format(
+                      new Date(ordered_at),
+                      "MM/dd/yyyy"
+                    )}{" "}
+                  </b>
+                </p>{" "}
+                <br></br>
+                <br></br>
+              </List>
+            );
+          })}
+        </ul>
+      </Container>
     </Container>
   );
 };
