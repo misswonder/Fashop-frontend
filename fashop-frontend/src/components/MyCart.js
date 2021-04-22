@@ -40,7 +40,7 @@ class MyCart extends Component {
               </div>
 
               <div className="product-desc">
-                <span className="title">{product.name}</span>
+                <span className="title"><strong>{product.name}</strong></span>
                 <br></br>
                 <br></br>
                 <p>
@@ -85,7 +85,7 @@ class MyCart extends Component {
         );
       })
     ) : (
-      <p className="none">
+      <p className="nothing">
         <strong>Nothing.</strong>
       </p>
     );
@@ -95,7 +95,7 @@ class MyCart extends Component {
         <Grid celled id="receipt">
           <Grid.Row>
             <Grid.Column width={15}>
-              <h5 class="order">You have ordered:</h5>
+              <h5 class="order"><strong>You have ordered:</strong></h5>
             </Grid.Column>
             <ul className="collection">{addedProducts}</ul>
           </Grid.Row>

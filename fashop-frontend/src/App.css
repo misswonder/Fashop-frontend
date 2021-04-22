@@ -3,17 +3,6 @@
   color: black;
 }
 
-/* .App-header {
-  background-color: #f1faee;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-} */
-
 img.item-img   {
   max-width: 370px;
   max-height: 200px;
@@ -37,10 +26,13 @@ img.order-item-img {
   width: 100%;
 }
 
-.none {
+.nothing {
   margin-left: 450px;
 }
 
+.no-history { 
+  margin-left: -70px;
+}
 
 .card-image img {
   width: 600px;
@@ -99,7 +91,6 @@ html {
 .rowone {
   display: flex;
   justify-content: center;
-  /* flex-direction: row; */
 }
 
 .columnone {
@@ -133,6 +124,11 @@ html {
 
 .title {
   color: grey;
+  font-size: 15px;
+}
+
+.card-title {
+  font-size: 20px;
 }
 
 .contactbutton {

@@ -4,7 +4,6 @@ import { addToCart } from "../actions/cartAction";
 import { Button } from "semantic-ui-react";
 
 const Product = ({ addToCart, product }) => {
-
   return (
     <div className="card" key={product.id}>
       <div className="card-image">
@@ -41,10 +40,9 @@ const Product = ({ addToCart, product }) => {
 };
 
 const mapStateToProps = (state) => {
-  return {
-    products: state.products,
-  };
+  return {};
 };
+
 const mapDispatchToProps = (dispatch) => {
   return {
     addToCart: (product) => {
@@ -53,4 +51,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Product);
+export default connect(null, mapDispatchToProps)(Product);

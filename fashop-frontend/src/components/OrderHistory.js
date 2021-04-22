@@ -35,69 +35,62 @@ const OrderHistory = () => {
       </Grid>
       <br></br>
       <br></br>
-      <Container>
-        <ul className="collection">
-          {orders.map((order) => {
-            let ordered_at = order.ordered_at;
-            let order_items = order.order_items;
-            if (order.length === 0) {
-              return (
-                <h4>
-                  <strong>You have no Order History</strong>
-                </h4>
-              );
-            }
-            return (
-              <List key={order.id}>
-                {order_items.map((item) => {
-                  return (
-                    <div className="order-item">
-                      <img
-                        src={item.product.image}
-                        alt={item.product.image}
-                        className="order-item-img"
-                      />
+      <ul className="collection">
+        {orders.length === 0 && (
+          <h5 class="no-history">
+            <strong>You Have No Order History</strong>
+          </h5>
+        )}
+        {orders.map((order) => {
+          let ordered_at = order.ordered_at;
+          let order_items = order.order_items;
+          return (
+            <List key={order.id}>
+              {order_items.map((item) => {
+                return (
+                  <div className="order-item">
+                    <img
+                      src={item.product.image}
+                      alt={item.product.image}
+                      className="order-item-img"
+                    />
+                    <div>
+                      <span>
+                        <h4>{item.product.name}</h4>
+                      </span>
                       <div>
-                        <span>
-                          <h4>Product: {item.product.name}</h4>
-                        </span>
-                        <div>
-                          <br></br>
-                          <p>
-                            <b>Price: {item.price}</b>
-                          </p>
+                        <br></br>
+                        <p>
+                          <b>Price: {item.price}</b>
+                        </p>
 
-                          <p>
-                            <b>Quantity: {item.quantity}</b>
-                          </p>
-                          <p>
-                            <b>Subtotal: {item.subtotal}</b>
-                          </p>
-                        </div>
+                        <p>
+                          <b>Quantity: {item.quantity}</b>
+                        </p>
+                        <p>
+                          <b>Subtotal: {item.subtotal}</b>
+                        </p>
                       </div>
                     </div>
-                  );
-                })}
-                <br></br>
-                <p>
-                  <b> Total: {order.total.toFixed(2)} </b>
-                </p>
-                <p>
-                  <b>
-                    {" "}
-                    Ordered_at: {format(
-                      new Date(ordered_at),
-                      "MM/dd/yyyy"
-                    )}{" "}
-                  </b>
-                </p>{" "}
-                <br></br>
-                <br></br>
-              </List>
-            );
-          })}
-        </ul>
-      </Container>
+                  </div>
+                );
+              })}
+              <br></br>
+              <p>
+                <b> Total: {order.total.toFixed(2)} </b>
+              </p>
+              <p>
+                <b>
+                  {" "}
+                  Ordered_at: {format(new Date(ordered_at), "MM/dd/yyyy")}{" "}
+                </b>
+              </p>{" "}
+              <br></br>
+              <br></br>
+            </List>
+          );
+        })}
+      </ul>
     </Container>
   );
 };

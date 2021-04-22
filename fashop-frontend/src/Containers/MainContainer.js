@@ -81,7 +81,7 @@ class MainContainer extends React.Component {
         <br></br>
         <br></br>
         <div className="container">
-          <h2 className="center">Our Products</h2>
+          <h2 className="center"><strong>Our Products</strong></h2>
           <br></br>
           <div className="box">
             {this.props.filteredProducts?.map((product) => {
