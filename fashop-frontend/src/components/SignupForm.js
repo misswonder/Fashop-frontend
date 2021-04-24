@@ -51,7 +51,7 @@ function SignupForm({ login }) {
   };
 
   return (
-    <Form onSubmit={signUp} autocomplete='off'>
+    <Form onSubmit={signUp} autoComplete='off'>
       <Form.Row>
         <Form.Group as={Col} controlId="formGridName">
           <Form.Label>Name</Form.Label>

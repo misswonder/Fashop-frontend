@@ -1,5 +1,5 @@
 import React from "react";
-import profile1 from "../image/profile1.jpg";
+import profile from "../image/profile.jpg";
 
 const About = () => {
   return (
@@ -17,7 +17,7 @@ const About = () => {
       <div class="rowone">
         <div class="columnone">
           <div class="card">
-            <img src={ profile1 } alt="Yvonne" style={{ width: '100%' }} />
+            <img src={ profile } alt="Yvonne" style={{ width: '100%' }} />
             <div class="container">
               <h2>Yvonne Chen</h2>
               <p class="title">Founder</p>

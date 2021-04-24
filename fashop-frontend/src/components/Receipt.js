@@ -50,7 +50,7 @@ class Receipt extends Component {
         <Grid celled id="recipecontainer">
           <Grid.Row>
             <Grid.Column width={15}>
-              <Checkbox label="Shipping(+$6)" onChange={this.handleChecked} />
+              <Checkbox label="2-Day Shipping(+$6)" onChange={this.handleChecked} />
             </Grid.Column>
             <Grid.Column width={15}>
               <strong>Total: ${this.props.total.toFixed(2)}</strong>
