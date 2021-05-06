@@ -2,7 +2,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/misswonder/Fashop-frontend">
-    <img src="src/image/logo.png" alt="Logo" width="auto" height="80">
+    <img src="/src/image/logo.png" alt="Logo" width="auto" height="80">
   </a>
 
   <h3 align="center">Fashop</h3>
