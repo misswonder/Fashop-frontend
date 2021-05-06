@@ -69,7 +69,7 @@ Key Features:
    ```
 3. Start the React app
    ```sh
-   npm start (default port: http://localhost:3000)
+   npm start (defaulted port: http://localhost:3000)
    ```
 <!-- CONTACT -->
 
