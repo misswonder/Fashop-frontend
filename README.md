@@ -56,7 +56,6 @@ Key Features:
 - [Redux](https://redux.js.org/)
 - [React Bootstrap](https://react-bootstrap.github.io/)
 - [React Semantic UI](https://react.semantic-ui.com/)
-- [Postgres](https://www.postgresql.org/)
 
 ### Installation
 
