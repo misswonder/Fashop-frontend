@@ -1,4 +1,6 @@
 <!-- PROJECT LOGO -->
+[![LinkedIn][linkedin-shield]][linkedin-url]
+
 <br />
 <p align="center">
   <a href="https://github.com/misswonder/Fashop-frontend">
