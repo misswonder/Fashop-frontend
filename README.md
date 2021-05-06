@@ -1,3 +1,5 @@
+[![LinkedIn][linkedin-shield]][https://www.linkedin.com/in/yvonne-chen-3419b952/]
+
 <!-- PROJECT LOGO -->
 
 <br />
