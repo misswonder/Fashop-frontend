@@ -26,7 +26,7 @@
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
+      <a href="#installation">Installation</a>
     </li>
     <li><a href="#contact">Contact</a></li>
   </ol>
