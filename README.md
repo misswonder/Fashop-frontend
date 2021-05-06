@@ -73,4 +73,9 @@ Key Features:
    ```sh
    npm start
    ```
+<!-- CONTACT -->
+
+## Contact
+
+Project Link: [https://github.com/misswonder/Fashop-frontend](https://github.com/misswonder/Fashop-frontend)   
 
