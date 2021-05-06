@@ -38,7 +38,7 @@
 
 <img src="fashop-frontend/src/image/homepage.png" alt="Logo" width="100%" >
 
-Fashop is a full-stack web application that allows users to browse and purchase on latest trending clothes. Users can signup an account, browse and purchase any selected products in their choices. 
+Capstone project for Software Engineering at Flatiron School. Fashop is a full-stack web application that allows users to browse and purchase on latest trending clothes. Users can signup an account, browse and purchase any selected products in their choices. 
 
 Key Features:
 
