@@ -2,7 +2,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/misswonder/Fashop-frontend">
-    <img src="fashop-frontend/src/image/logo.png" alt="Logo" width="auto" height="120">
+    <img src="fashop-frontend/src/image/logo.png" alt="Logo" width="auto" height="140">
   </a>
 
   <h3 align="center">Fashop</h3>
@@ -36,7 +36,7 @@
 
 ## About The Project
 
-<img src="fashop-frontend/src/image/homepage.png" alt="Logo" width="80%" >
+<img src="fashop-frontend/src/image/homepage.png" alt="Logo" width="100%" >
 
 Fashop is a full-stack web application that allows users to browse and purchase on latest trending clothes. Users can signup an account, browse and purchase any selected products in their choices. 
 
