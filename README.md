@@ -37,7 +37,7 @@
 
 ## About The Project
 
-<img src="fashop-frontend/src/image/homepage.png" alt="Logo" width="100%" >
+<img src="fashop-frontend/src/image/homepage.png" alt="Homepage" width="100%" >
 
 Capstone project for Software Engineering at Flatiron School. Fashop is a full-stack web application that allows users to browse and purchase on latest trending clothes. Users can signup an account, browse and purchase any selected products in their choices. 
 
